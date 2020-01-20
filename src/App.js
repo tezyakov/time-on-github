@@ -22,7 +22,6 @@ const App = () => {
 
   const getRegDate = async login => {
     const data = await axios.get(`https://api.github.com/users/${login}`);
-    console.log(data);
     const date = data.data.created_at;
     setRegDate(date);
   };
@@ -30,9 +29,7 @@ const App = () => {
   const onSubmit = async values => {
     await getRegDate(values.login);
   };
-    
-  
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.result}>{dateDiff || ''}</div>
@@ -60,6 +57,6 @@ const App = () => {
     />
   </div>
   );
-}
+};
 
 export default App;
