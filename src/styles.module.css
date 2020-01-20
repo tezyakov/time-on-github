@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    flex: 1;
+    margin: auto;
+}
+
+.result {
+    flex: 1;
+    margin: auto;
+}
