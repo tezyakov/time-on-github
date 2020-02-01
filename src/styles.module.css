@@ -1,16 +1,47 @@
 .container {
-    display: flex;
+    height: 100%;
+    width: 100%;
     flex-direction: column;
-    justify-content: center;
+    display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
-.form {
-    flex: 1;
-    margin: auto;
+.field {
+    width: 300px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    border-radius: 8px;
+}
+
+.button {
+    margin-top: 16px;
+    background-color: gray;
+    border: none;
+    color: white;
+    padding: 16px 147px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    border-radius: 8px;
+}
+
+.title {
+    font-size: 32px;
+    padding-top: 40px;
+    margin-bottom: 40px;
 }
 
 .result {
-    flex: 1;
-    margin: auto;
+    margin-top: 40px;
+    font-size: 32px;
+}
+
+.error {
+    margin-top: 40px;
+    font-size: 32px;
+    color: red;
 }

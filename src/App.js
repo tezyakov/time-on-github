@@ -9,6 +9,8 @@ import styles from './styles.module.css';
 const App = () => {
   const [regDate, setRegDate] = React.useState(0);
   const [dateDiff, setDateDiff] = React.useState(null);
+  const [name, setName] = React.useState(null);
+  const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
     if (regDate) {
@@ -21,41 +23,54 @@ const App = () => {
   }, [regDate]);
 
   const getRegDate = async login => {
-    const data = await axios.get(`https://api.github.com/users/${login}`);
-    const date = data.data.created_at;
-    setRegDate(date);
+    try {
+      const data = await axios.get(`https://api.github.com/users/${login}`);
+      const date = data.data.created_at;
+      setRegDate(date);
+    } catch (e) {
+        if (e.response.status == 404) {
+          setError('Oops, looks like this account does not exist')
+        } else if (e.response.status != 404) {
+          setError('Unknown error')
+        }
+    }
   };
 
   const onSubmit = async values => {
+    setName(values.login);
     await getRegDate(values.login);
   };
 
+  const required = value => (value ? undefined : 'Required');
+
   return (
     <div className={styles.container}>
-      <div className={styles.result}>{dateDiff || ''}</div>
+      <div className={styles.title}>Enter your GitHub login here:</div>
       <Form
-        className={styles.form}
         onSubmit={onSubmit}
-        render={({ handleSubmit }) => (
+        render={({ handleSubmit, meta }) => (
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Login</label>
             <Field
+              className={styles.field}
               name="login"
               component="input"
               type="text"
               placeholder="Login"
+              validate={required}
             />
           </div>
           <div>
-            <button type="submit">
+            <button className={styles.button}>
               Submit
             </button>      
           </div>
         </form>
-      )}
-    />
-  </div>
+        )}
+      />
+      <div className={styles.error}>{error ? `${error}` : ''}</div>
+      <div className={styles.result}>{dateDiff ? `${name} is ${dateDiff} on GitHub` : ''}</div>
+    </div>
   );
 };
 
