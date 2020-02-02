@@ -1,0 +1,8 @@
+{
+  "short_name": "How long are u on GitHub",
+  "name": "How long are u on GitHub",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
