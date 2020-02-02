@@ -17,11 +17,12 @@
 }
 
 .button {
+    width: 369px;
     margin-top: 16px;
     background-color: gray;
     border: none;
     color: white;
-    padding: 16px 147px;
+    padding: 16px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -41,6 +42,8 @@
 }
 
 .error {
+    width: 350px;
+    text-align: center;
     margin-top: 40px;
     font-size: 32px;
     color: red;

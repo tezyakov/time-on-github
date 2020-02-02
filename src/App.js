@@ -28,27 +28,32 @@ const App = () => {
       const date = data.data.created_at;
       setRegDate(date);
     } catch (e) {
-        if (e.response.status == 404) {
+        if (e.response.status === 404) {
           setError('Oops, looks like this account does not exist')
-        } else if (e.response.status != 404) {
+        } else if (e.response.status === 403) {
+          setError('Sorry, you can make only 60 requests per hour')
+        } else if (e.response.status) {
           setError('Unknown error')
         }
     }
   };
 
   const onSubmit = async values => {
+    setError(null);
+    if (!values.login) {
+      setError('Field is required');
+    }
+    setRegDate(null);
     setName(values.login);
     await getRegDate(values.login);
   };
-
-  const required = value => (value ? undefined : 'Required');
 
   return (
     <div className={styles.container}>
       <div className={styles.title}>Enter your GitHub login here:</div>
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, meta }) => (
+        render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <div>
             <Field
@@ -57,7 +62,6 @@ const App = () => {
               component="input"
               type="text"
               placeholder="Login"
-              validate={required}
             />
           </div>
           <div>
@@ -69,7 +73,7 @@ const App = () => {
         )}
       />
       <div className={styles.error}>{error ? `${error}` : ''}</div>
-      <div className={styles.result}>{dateDiff ? `${name} is ${dateDiff} on GitHub` : ''}</div>
+      <div className={styles.result}>{regDate && name !== undefined  ? `${name} is ${dateDiff} on GitHub`: ''}</div>
     </div>
   );
 };
