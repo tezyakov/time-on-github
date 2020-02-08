@@ -56,7 +56,6 @@ const App = () => {
         onSubmit={onSubmit}
         render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <div>
             <Field
               className={styles.field}
               name="login"
@@ -64,12 +63,9 @@ const App = () => {
               type="text"
               placeholder="Login"
             />
-          </div>
-          <div>
             <button className={styles.button}>
               Submit
             </button>      
-          </div>
         </form>
         )}
       />
