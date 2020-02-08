@@ -25,6 +25,7 @@ const App = () => {
   const getRegDate = async login => {
     try {
       const data = await axios.get(`https://api.github.com/users/${login}`);
+      console.log(data);
       const date = data.data.created_at;
       setRegDate(date);
     } catch (e) {
