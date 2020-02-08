@@ -55,7 +55,7 @@ const App = () => {
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <Field
               className={styles.field}
               name="login"
